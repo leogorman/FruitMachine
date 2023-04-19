@@ -39,6 +39,15 @@ class FruitMachineIntegrationTests {
         assertTrue(result);
     }
 
+    @Test
+    void testResetEndpoint() {
+        ResponseEntity<FruitMachineResult> response = restTemplate.postForEntity("/api/fruit-machine/reset", null, FruitMachineResult.class);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        FruitMachineResult result = response.getBody();
+        assertNotNull(result);
+        assertEquals(result.getBalance(), 100);
+    }
+
 }
 
 
