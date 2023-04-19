@@ -25,6 +25,12 @@ public class FruitMachineController {
         return ResponseEntity.ok(new FruitMachineResult(wonJackpot(colors), List.of(colors), balance));
     }
 
+    @PostMapping("/reset")
+    public ResponseEntity<FruitMachineResult> reset() {
+        balance = 100;
+        return ResponseEntity.ok(new FruitMachineResult(false, null, balance));
+    }
+
     public boolean wonJackpot(Color[] colors) {
         if (Arrays.stream(colors).allMatch(c -> c == colors[0])) {
             int JACKPOT = 1000;
