@@ -8,7 +8,7 @@ import { FruitMachineResult } from './fruit-machine.result';
 })
 export class FruitMachineService {
 
-  private apiUrl = 'http://localhost:8080/api/machine';
+  private apiUrl = 'http://localhost:8080/api/fruit-machine';
 
   constructor(private http: HttpClient) { }
 
