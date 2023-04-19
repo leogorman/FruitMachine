@@ -5,6 +5,7 @@ import com.phorest.fruitmachine.model.FruitMachineResult;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -21,7 +22,20 @@ public class FruitMachineController {
         Color[] colors = random.ints(4, 0, Color.values().length)
                 .mapToObj(index -> Color.values()[index])
                 .toArray(Color[]::new);
-        return ResponseEntity.ok(new FruitMachineResult(false, List.of(colors), balance));
+        return ResponseEntity.ok(new FruitMachineResult(wonJackpot(colors), List.of(colors), balance));
+    }
+
+    public boolean wonJackpot(Color[] colors) {
+        if (Arrays.stream(colors).allMatch(c -> c == colors[0])) {
+            int JACKPOT = 1000;
+            balance += JACKPOT;
+            return true;
+        } else {
+            if (balance > 0) {
+                balance -= 10;
+            }
+            return false;
+        }
     }
 }
 

@@ -33,7 +33,7 @@ class FruitMachineIntegrationTests {
     }
 
     @Test
-    public void testWonJackpot() {
+    void testWonJackpot() {
         Color[] colors = {Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN};
         boolean result = fruitMachineController.wonJackpot(colors);
         assertTrue(result);
